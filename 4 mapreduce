@@ -1,0 +1,47 @@
+text = "hello world welcome to the world of cloud computing hello cloud"
+words = text.split()
+word_count = {}
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+
+print("Word Count Result:")
+for word, count in word_count.items():
+    print(word, ":", count)
+
+
+
+
+
+
+
+
+
+from mrjob.job import MRJob
+
+class MRWordCount(MRJob):
+    
+    def mapper(self, _, line):
+        for word in line.split():
+            yield (word.lower(), 1)
+    
+    def reducer(self, word, counts):
+        yield (word, sum(counts))
+
+if name == 'main':
+    MRWordCount.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
