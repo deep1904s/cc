@@ -1,0 +1,48 @@
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+\qemu-kvm → The KVM hypervisor
+libvirt-daemon-system, libvirt-clients → Libvirt for VM management
+bridge-utils → Network bridge tools
+virt-manager → GUI for managing VMs easily
+
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+lsmod | grep kvm
+
+sudo usermod -aG libvirt $(whoami)
+sudo usermod -aG kvm $(whoami)
+
+
+sudo systemctl enable --now libvirtd
+sudo systemctl start libvirtd
+
+
+virt-manager
+virsh list --all
+
+virt-install --name vm1 --ram 2048 --disk size=10 --vcpus 2 --os-type linux --os-variant ubuntu20.04 --network network=default --graphics vnc --cdrom /path/to/ubuntu.iso
+
+virsh start vm1
+virsh shutdown vm1
+virsh undefine vm1
+
+
+
+
+
+
+sudo apt update
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+
+sudo systemctl enable --now libvirtd
+sudo usermod -aG libvirt $(whoami)
+lsmod | grep kvm
+virsh list --all
+virt-install --name vm1 --ram 2048 --disk size=10 --vcpus 2 --os-type linux --os-variant ubuntu20.04 --network network=default --graphics vnc --cdrom /path/to/ubuntu.iso
+
+virsh start vm1
+virsh shutdown vm1
+virsh undefine vm1
+
