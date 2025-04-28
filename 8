@@ -1,0 +1,17 @@
+sudo ip addr add 192.168.10.10/24 dev enp0s8
+sudo ip link set enp0s8 up
+
+sudo ip addr add 192.168.10.20/24 dev enp0s8
+sudo ip link set enp0s8 up
+
+echo "Hello" > ubuntu1
+
+sudo apt install openssh-server
+sudo systemctl start ssh
+sudo systemctl enable ssh
+
+scp ~/Desktop/myfile.txt ubuntu2@192.168.1.20:/home/ubuntu2/
+
+sudo ufw allow ssh
+sudo apt update
+sudo apt install openssh-server net-tools -y
