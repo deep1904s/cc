@@ -1,0 +1,15 @@
+sudo apt install -y net-tools
+sudo apt update
+sudo ufw enable
+sudo ufw disable
+
+ip a 
+
+sudo ip addr add 192.168.10.10/24 dev enp0s8
+sudo ip link set enp0s8 up
+
+sudo ip addr add 192.168.10.20/24 dev enp0s8
+sudo ip link set enp0s8 up
+
+ping 192.168.10.20
+ping 192.168.10.10
